@@ -16,6 +16,7 @@
 #include "scenes/meal_pager_scene.h"
 #include "views/meal_pager_startscreen.h"
 #include "views/meal_pager_transmit.h"
+#include "views/meal_pager_scanner.h"
 #include "helpers/meal_pager_storage.h"
 #include "helpers/subghz/subghz_types.h"
 #include "helpers/subghz/subghz.h"
@@ -41,6 +42,7 @@ typedef struct {
     VariableItemList* variable_item_list;
     Meal_PagerStartscreen* meal_pager_startscreen;
     Meal_PagerTransmit* meal_pager_transmit;
+    Meal_PagerScanner* meal_pager_scanner;
     DialogsApp* dialogs; // File Browser
     FuriString* file_path; // File Browser
     uint32_t haptic;
@@ -74,6 +76,7 @@ typedef enum {
     Meal_PagerViewIdTransmit,
     Meal_PagerViewIdSettings,
     Meal_PagerViewIdIntInput,
+    Meal_PagerViewIdScanner,
 } Meal_PagerViewId;
 
 typedef enum {
