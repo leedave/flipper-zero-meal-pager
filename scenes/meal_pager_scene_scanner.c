@@ -25,7 +25,7 @@ bool meal_pager_scene_scanner_on_event(void* context, SceneManagerEvent event) {
     if(event.type == SceneManagerEventTypeCustom) {
         switch(event.event) {
         case Meal_PagerCustomEventScannerOk:
-         case Meal_PagerCustomEventScannerBack:
+        case Meal_PagerCustomEventScannerBack:
             scene_manager_next_scene(app->scene_manager, Meal_PagerSceneMenu);
             consumed = true;
             break;
