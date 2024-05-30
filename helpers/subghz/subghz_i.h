@@ -22,9 +22,9 @@
 #include <gui/modules/widget.h>
 
 #include <subghz/scenes/subghz_scene.h>
-
+*/
 #include "subghz_history.h"
-
+/*
 #include <gui/modules/variable_item_list.h>
 #include <lib/toolbox/path.h>
 
@@ -58,7 +58,7 @@ struct SubGhz {
     //SubGhzLock lock;
     //SubGhzThresholdRssi* threshold_rssi;
     //SubGhzRxKeyState rx_key_state;
-    //SubGhzHistory* history;
+    SubGhzHistory* history;
     SubGhzLoadTypeFile load_type_file;
     //void* rpc_ctx;
 };
