@@ -12,10 +12,15 @@ SubGhz* subghz_alloc() {
 
     subghz->txrx = subghz_txrx_alloc();
 
+    subghz->history = subghz_history_alloc();
+
     return subghz;
 }
 
 void subghz_free(SubGhz* subghz) {
+    //Worker & Protocol & History
+    subghz_history_free(subghz->history);
+
     //TxRx
     subghz_txrx_free(subghz->txrx);
 
