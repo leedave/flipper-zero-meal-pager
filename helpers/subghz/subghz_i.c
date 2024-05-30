@@ -15,7 +15,7 @@
 #include <lib/subghz/protocols/raw.h>
 
 //#define TAG "SubGhz"
-/*
+
 void subghz_set_default_preset(SubGhz* subghz) {
     furi_assert(subghz);
     subghz_txrx_set_preset(
@@ -24,7 +24,7 @@ void subghz_set_default_preset(SubGhz* subghz) {
         subghz_setting_get_default_frequency(subghz_txrx_get_setting(subghz->txrx)),
         NULL,
         0);
-}*/
+}
 
 /*bool subghz_tx_start(SubGhz* subghz, FlipperFormat* flipper_format) {
     switch(subghz_txrx_tx_start(subghz->txrx, flipper_format)) {
@@ -239,22 +239,22 @@ bool subghz_load_protocol_from_file(SubGhz* subghz) {
     subghz->lock = SubGhzLockOn;
 }*/
 
-/*void subghz_unlock(SubGhz* subghz) {
+void subghz_unlock(SubGhz* subghz) {
     furi_assert(subghz);
     subghz->lock = SubGhzLockOff;
-}*/
+}
 
 /*bool subghz_is_locked(SubGhz* subghz) {
     furi_assert(subghz);
     return (subghz->lock == SubGhzLockOn);
 }*/
 
-/*void subghz_rx_key_state_set(SubGhz* subghz, SubGhzRxKeyState state) {
+void subghz_rx_key_state_set(SubGhz* subghz, SubGhzRxKeyState state) {
     furi_assert(subghz);
     subghz->rx_key_state = state;
-}*/
+}
 
-/*SubGhzRxKeyState subghz_rx_key_state_get(SubGhz* subghz) {
+SubGhzRxKeyState subghz_rx_key_state_get(SubGhz* subghz) {
     furi_assert(subghz);
     return subghz->rx_key_state;
-}*/
+}

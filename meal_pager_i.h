@@ -19,6 +19,7 @@
 #include "views/meal_pager_scanner.h"
 #include "helpers/meal_pager_storage.h"
 #include "helpers/subghz/subghz_types.h"
+#include "helpers/subghz/subghz_history.h"
 #include "helpers/subghz/subghz.h"
 #include "helpers/gui/int_input.h"
 

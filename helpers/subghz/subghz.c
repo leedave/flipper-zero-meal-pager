@@ -14,6 +14,9 @@ SubGhz* subghz_alloc() {
 
     subghz->history = subghz_history_alloc();
 
+    subghz_unlock(subghz);
+    subghz_rx_key_state_set(subghz, SubGhzRxKeyStateIDLE);
+
     return subghz;
 }
 

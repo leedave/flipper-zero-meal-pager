@@ -100,7 +100,7 @@ SubGhzTxRxStartTxState subghz_txrx_tx_start(SubGhzTxRx* instance, FlipperFormat*
  * 
  * @param instance Pointer to a SubGhzTxRx
  */
-//void subghz_txrx_rx_start(SubGhzTxRx* instance);
+void subghz_txrx_rx_start(SubGhzTxRx* instance);
 
 /**
  * Stop TX/RX CC1101
@@ -273,10 +273,10 @@ SubGhzSetting* subghz_txrx_get_setting(SubGhzTxRx* instance);
  * @param callback Callback for receive data
  * @param context Context for callback
  */
-/*void subghz_txrx_set_rx_calback(
+void subghz_txrx_set_rx_calback(
     SubGhzTxRx* instance,
     SubGhzReceiverCallback callback,
-    void* context);*/
+    void* context);
 
 /**
  * Set callback for Raw decoder, end of data transfer  
