@@ -168,7 +168,7 @@ static void subghz_txrx_begin(SubGhzTxRx* instance, uint8_t* preset_data) {
     FURI_LOG_D(TAG, "completed subghz_txrx_begin");
 }
 
-/*static uint32_t subghz_txrx_rx(SubGhzTxRx* instance, uint32_t frequency) {
+static uint32_t subghz_txrx_rx(SubGhzTxRx* instance, uint32_t frequency) {
     furi_assert(instance);
 
     furi_assert(
@@ -185,7 +185,7 @@ static void subghz_txrx_begin(SubGhzTxRx* instance, uint8_t* preset_data) {
     subghz_worker_start(instance->worker);
     instance->txrx_state = SubGhzTxRxStateRx;
     return value;
-}*/
+}
 
 static void subghz_txrx_idle(SubGhzTxRx* instance) {
     furi_assert(instance);
@@ -318,7 +318,7 @@ SubGhzTxRxStartTxState subghz_txrx_tx_start(SubGhzTxRx* instance, FlipperFormat*
     return ret;
 }
 
-/*void subghz_txrx_rx_start(SubGhzTxRx* instance) {
+void subghz_txrx_rx_start(SubGhzTxRx* instance) {
     furi_assert(instance);
     subghz_txrx_stop(instance);
     subghz_txrx_begin(
@@ -326,7 +326,7 @@ SubGhzTxRxStartTxState subghz_txrx_tx_start(SubGhzTxRx* instance, FlipperFormat*
         subghz_setting_get_preset_data_by_name(
             subghz_txrx_get_setting(instance), furi_string_get_cstr(instance->preset->name)));
     subghz_txrx_rx(instance, instance->preset->frequency);
-}*/
+}
 
 /*void subghz_txrx_set_need_save_callback(
     SubGhzTxRx* instance,
@@ -549,12 +549,12 @@ SubGhzProtocolDecoderBase* subghz_txrx_get_decoder(SubGhzTxRx* instance) {
     subghz_receiver_set_filter(instance->receiver, filter);
 }*/
 
-/*void subghz_txrx_set_rx_calback(
+void subghz_txrx_set_rx_calback(
     SubGhzTxRx* instance,
     SubGhzReceiverCallback callback,
     void* context) {
     subghz_receiver_set_rx_callback(instance->receiver, callback, context);
-}*/
+}
 
 void subghz_txrx_set_raw_file_encoder_worker_callback_end(
     SubGhzTxRx* instance,

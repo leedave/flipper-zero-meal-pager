@@ -1,6 +1,7 @@
 #pragma once
 
 #include "subghz_types.h"
+#include "subghz_history.h"
 #include "subghz_error_type.h"
 #include <lib/subghz/types.h>
 #include "subghz.h"
@@ -45,7 +46,7 @@ struct SubGhz {
     FuriString* file_path;
     //FuriString* file_path_tmp;
     //char file_name_tmp[SUBGHZ_MAX_LEN_NAME]; // just left it in to make the object not empty
-    //SubGhzNotificationState state_notifications;
+    SubGhzNotificationState state_notifications;
 
     /*SubGhzViewReceiver* subghz_receiver;
     SubGhzViewTransmitter* subghz_transmitter;
@@ -55,15 +56,15 @@ struct SubGhz {
 
     //SubGhzProtocolFlag filter;
     //FuriString* error_str;
-    //SubGhzLock lock;
+    SubGhzLock lock;
     //SubGhzThresholdRssi* threshold_rssi;
-    //SubGhzRxKeyState rx_key_state;
+    SubGhzRxKeyState rx_key_state;
     SubGhzHistory* history;
     SubGhzLoadTypeFile load_type_file;
     //void* rpc_ctx;
 };
 
-//void subghz_set_default_preset(SubGhz* subghz);
+void subghz_set_default_preset(SubGhz* subghz);
 //void subghz_blink_start(SubGhz* subghz);
 //void subghz_blink_stop(SubGhz* subghz);
 
@@ -76,8 +77,8 @@ bool subghz_load_protocol_from_file(SubGhz* subghz);
 //SubGhzLoadTypeFile subghz_get_load_type_file(SubGhz* subghz);
 
 //void subghz_lock(SubGhz* subghz);
-//void subghz_unlock(SubGhz* subghz);
+void subghz_unlock(SubGhz* subghz);
 //bool subghz_is_locked(SubGhz* subghz);
 
-//void subghz_rx_key_state_set(SubGhz* subghz, SubGhzRxKeyState state);
-//SubGhzRxKeyState subghz_rx_key_state_get(SubGhz* subghz);
+void subghz_rx_key_state_set(SubGhz* subghz, SubGhzRxKeyState state);
+SubGhzRxKeyState subghz_rx_key_state_get(SubGhz* subghz);
