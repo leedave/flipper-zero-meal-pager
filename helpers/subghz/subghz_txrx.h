@@ -72,7 +72,7 @@ const char* subghz_txrx_get_preset_name(SubGhzTxRx* instance, const char* preset
  * @param instance Pointer to a SubGhzTxRx
  * @return SubGhzRadioPreset Preset
  */
-//SubGhzRadioPreset subghz_txrx_get_preset(SubGhzTxRx* instance);
+SubGhzRadioPreset subghz_txrx_get_preset(SubGhzTxRx* instance);
 
 /**
  * Get string frequency and modulation
@@ -81,10 +81,10 @@ const char* subghz_txrx_get_preset_name(SubGhzTxRx* instance, const char* preset
  * @param frequency Pointer to a string frequency
  * @param modulation Pointer to a string modulation
  */
-/*void subghz_txrx_get_frequency_and_modulation(
+void subghz_txrx_get_frequency_and_modulation(
     SubGhzTxRx* instance,
     FuriString* frequency,
-    FuriString* modulation);*/
+    FuriString* modulation);
 
 /**
  * Start TX CC1101

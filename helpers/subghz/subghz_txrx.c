@@ -136,12 +136,12 @@ const char* subghz_txrx_get_preset_name(SubGhzTxRx* instance, const char* preset
     return preset_name;
 }
 
-/*SubGhzRadioPreset subghz_txrx_get_preset(SubGhzTxRx* instance) {
+SubGhzRadioPreset subghz_txrx_get_preset(SubGhzTxRx* instance) {
     furi_assert(instance);
     return *instance->preset;
-}*/
+}
 
-/*void subghz_txrx_get_frequency_and_modulation(
+void subghz_txrx_get_frequency_and_modulation(
     SubGhzTxRx* instance,
     FuriString* frequency,
     FuriString* modulation) {
@@ -157,7 +157,7 @@ const char* subghz_txrx_get_preset_name(SubGhzTxRx* instance, const char* preset
     if(modulation != NULL) {
         furi_string_printf(modulation, "%.2s", furi_string_get_cstr(preset->name));
     }
-}*/
+}
 
 static void subghz_txrx_begin(SubGhzTxRx* instance, uint8_t* preset_data) {
     furi_assert(instance);
