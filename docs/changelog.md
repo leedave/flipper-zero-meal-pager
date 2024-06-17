@@ -1,3 +1,6 @@
+## v1.8
+- Compatibility Update for OFW 0.103.1-rc and above
+
 ## v1.7
 - Added code refactors from xMasterX and WillyJL
 - Minor update of Readme
