@@ -9,6 +9,7 @@ static void meal_pager_scene_scanner_update_statusbar(void* context) {
     Meal_Pager* app = context;
     SubGhz* subghz = app->subghz;
     FuriString* history_stat_str = furi_string_alloc();
+    FURI_LOG_D(TAG, "Triggered Scanner Update Statusbar");
     if(!subghz_history_get_text_space_left(subghz->history, history_stat_str)) {
         FuriString* frequency_str = furi_string_alloc();
         FuriString* modulation_str = furi_string_alloc();
@@ -20,7 +21,10 @@ static void meal_pager_scene_scanner_update_statusbar(void* context) {
         //    furi_string_get_cstr(frequency_str),
         //    furi_string_get_cstr(modulation_str),
         //    furi_string_get_cstr(history_stat_str));
-
+        FURI_LOG_D(TAG, "freq=%s, mod=%s, hist=%s",
+            furi_string_get_cstr(frequency_str),
+            furi_string_get_cstr(modulation_str),
+            furi_string_get_cstr(history_stat_str));
         furi_string_free(frequency_str);
         furi_string_free(modulation_str);
     } else {
@@ -49,6 +53,7 @@ static void meal_pager_add_to_history_callback(
     SubGhz* subghz = app->subghz;
     SubGhzHistory* history = subghz->history;
     FuriString* str_buff = furi_string_alloc();
+    FURI_LOG_D(TAG, "Triggered Scanner Add to History Callback");
 
     SubGhzRadioPreset preset = subghz_txrx_get_preset(subghz->txrx);
 
@@ -94,8 +99,8 @@ void meal_pager_scene_scanner_on_enter(void* context) {
     subghz->state_notifications = SubGhzNotificationStateRx;
     subghz_txrx_rx_start(subghz->txrx);
 
-    /*furi_check(
-        subghz_txrx_load_decoder_by_name_protocol(subghz->txrx, SUBGHZ_PROTOCOL_BIN_RAW_NAME));*/
+    furi_check(
+        subghz_txrx_load_decoder_by_name_protocol(subghz->txrx, SUBGHZ_PROTOCOL_BIN_RAW_NAME));
 
     meal_pager_scene_scanner_update_statusbar(app);
 
