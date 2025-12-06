@@ -63,7 +63,7 @@ static void meal_pager_add_to_history_callback(
         //    furi_string_get_cstr(str_buff),
         //    subghz_history_get_type_protocol(history, item_history - 1));
 
-       meal_pager_scene_scanner_update_statusbar(subghz);
+       meal_pager_scene_scanner_update_statusbar(app);
     }
     subghz_receiver_reset(receiver);
     //UNUSED(scanner);
@@ -89,7 +89,7 @@ void meal_pager_scene_scanner_on_enter(void* context) {
 
     meal_pager_scanner_set_callback(
         app->meal_pager_scanner, meal_pager_scene_scanner_callback, app);
-    subghz_txrx_set_rx_calback(subghz->txrx, meal_pager_add_to_history_callback, subghz);
+    subghz_txrx_set_rx_calback(subghz->txrx, meal_pager_add_to_history_callback, app);
 
     subghz->state_notifications = SubGhzNotificationStateRx;
     subghz_txrx_rx_start(subghz->txrx);
@@ -114,7 +114,7 @@ bool meal_pager_scene_scanner_on_event(void* context, SceneManagerEvent event) {
             subghz->state_notifications = SubGhzNotificationStateIDLE;
             subghz_txrx_stop(subghz->txrx);
             subghz_txrx_hopper_set_state(subghz->txrx, SubGhzHopperStateOFF);
-            subghz_txrx_set_rx_calback(subghz->txrx, NULL, subghz);
+            subghz_txrx_set_rx_calback(subghz->txrx, NULL, NULL);
             subghz_rx_key_state_set(subghz, SubGhzRxKeyStateIDLE);
             subghz_set_default_preset(subghz);
             scene_manager_next_scene(app->scene_manager, Meal_PagerSceneMenu);
