@@ -172,7 +172,7 @@ void subghz_txrx_speaker_off(SubGhzTxRx* instance);
  * 
  * @param instance Pointer to a SubGhzTxRx 
  */
-//void subghz_txrx_speaker_mute(SubGhzTxRx* instance);
+void subghz_txrx_speaker_mute(SubGhzTxRx* instance);
 
 /**
  * Speaker unmute

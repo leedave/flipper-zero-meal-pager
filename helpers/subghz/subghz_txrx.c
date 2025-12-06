@@ -197,7 +197,7 @@ static void subghz_txrx_idle(SubGhzTxRx* instance) {
     FURI_LOG_D(TAG, "completed subghz_txrx_idle");
 }
 
-/*static void subghz_txrx_rx_end(SubGhzTxRx* instance) {
+static void subghz_txrx_rx_end(SubGhzTxRx* instance) {
     furi_assert(instance);
     furi_assert(instance->txrx_state == SubGhzTxRxStateRx);
 
@@ -208,7 +208,7 @@ static void subghz_txrx_idle(SubGhzTxRx* instance) {
     subghz_devices_idle(instance->radio_device);
     subghz_txrx_speaker_off(instance);
     instance->txrx_state = SubGhzTxRxStateIDLE;
-}*/
+}
 
 /*void subghz_txrx_sleep(SubGhzTxRx* instance) {
     furi_assert(instance);
@@ -374,11 +374,11 @@ void subghz_txrx_stop(SubGhzTxRx* instance) {
         subghz_txrx_speaker_unmute(instance);
         break;
     case SubGhzTxRxStateRx:
-        //subghz_txrx_rx_end(instance);
-        //subghz_txrx_speaker_mute(instance);
+        subghz_txrx_rx_end(instance);
+        subghz_txrx_speaker_mute(instance);
         break;
-
     default:
+        
         break;
     }
 }
@@ -479,14 +479,14 @@ void subghz_txrx_speaker_off(SubGhzTxRx* instance) {
     }
 }
 
-/*void subghz_txrx_speaker_mute(SubGhzTxRx* instance) {
+void subghz_txrx_speaker_mute(SubGhzTxRx* instance) {
     furi_assert(instance);
     if(instance->speaker_state == SubGhzSpeakerStateEnable) {
         if(furi_hal_speaker_is_mine()) {
             subghz_devices_set_async_mirror_pin(instance->radio_device, NULL);
         }
     }
-}*/
+}
 
 void subghz_txrx_speaker_unmute(SubGhzTxRx* instance) {
     furi_assert(instance);

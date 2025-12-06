@@ -130,5 +130,6 @@ bool meal_pager_scene_scanner_on_event(void* context, SceneManagerEvent event) {
 
 void meal_pager_scene_scanner_on_exit(void* context) {
     Meal_Pager* app = context;
+    
     UNUSED(app);
 }
