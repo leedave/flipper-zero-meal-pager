@@ -6,7 +6,8 @@
 //#include "../meal_pager_storage.h"
 
 SubGhz* subghz_alloc() {
-    SubGhz* subghz = malloc(sizeof(SubGhz));
+    SubGhz* subghz = calloc(1, sizeof(SubGhz));
+    furi_check(subghz);
 
     subghz->file_path = furi_string_alloc();
 
@@ -35,13 +36,16 @@ void subghz_scene_transmit_callback_end_tx(void* context) {
         app->view_dispatcher, Meal_PagerCustomEventViewTransmitterSendStop);
 }
 
-void subghz_send(void* context) {
+bool subghz_send(void* context) {
     //UNUSED(context);
     Meal_Pager* app = context;
     //SubGhz* subghz = subghz_alloc();
 
     FURI_LOG_D(TAG, "loading protocol from file");
-    subghz_load_protocol_from_file(app->subghz);
+    if(!subghz_load_protocol_from_file(app->subghz)) {
+        FURI_LOG_E(TAG, "Failed to load protocol from temp file");
+        return false;
+    }
 
     /*Storage* storage = furi_record_open(RECORD_STORAGE);
     FlipperFormat* ff = flipper_format_file_alloc(storage);
@@ -56,9 +60,14 @@ void subghz_send(void* context) {
     //subghz_txrx_tx_start(subghz->txrx, ff);
 
     FURI_LOG_D(TAG, "Starting Transmission");
-    subghz_txrx_tx_start(
+    SubGhzTxRxStartTxState tx_state = subghz_txrx_tx_start(
         app->subghz->txrx,
         subghz_txrx_get_fff_data(app->subghz->txrx)); //Seems like it must be done this way
+    if(tx_state != SubGhzTxRxStartTxStateOk) {
+        FURI_LOG_E(TAG, "Start TX failed with state %d", (int)tx_state);
+        subghz_txrx_stop(app->subghz->txrx);
+        return false;
+    }
 
     FURI_LOG_D(TAG, "setting sugbhz raw file encoder worker callback");
     subghz_txrx_set_raw_file_encoder_worker_callback_end(
@@ -74,4 +83,5 @@ void subghz_send(void* context) {
     //subghz_free(subghz);
     FURI_LOG_D(TAG, "Finished Transmitting");
     //meal_pager_blink_stop(app);
+    return true;
 }

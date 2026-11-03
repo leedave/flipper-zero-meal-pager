@@ -55,7 +55,13 @@ void meal_pager_scene_transmit_on_enter(void* context) {
     FURI_LOG_D(TAG, "Start Transmitting");
     if(!app->stop_transmit) {
         meal_pager_transmit_model_set_sending(app->meal_pager_transmit, 1);
-        subghz_send(app);
+        if(!subghz_send(app)) {
+            FURI_LOG_E(TAG, "Could not start transmission");
+            app->state_notifications = SubGhzNotificationStateIDLE;
+            meal_pager_transmit_model_set_sending(app->meal_pager_transmit, 0);
+            meal_pager_blink_stop(app);
+            return;
+        }
     }
     dolphin_deed(DolphinDeedSubGhzSend);
 }
